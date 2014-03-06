@@ -20,10 +20,10 @@ def english_calculator(number_string)
 
     1.upto(numbers.length-1) do |index|
       current_operator = found_operators[index - 1]
-      current_result = current_result + current_operator + numbers[index
+      current_result = current_result + current_operator + numbers[index]
     end
 
-    result = RubyVM::InstructionSequence.compile(current_result).eval.round(1)
+    result = eval(current_result).round(1)
     final_results.push(result)
   end
 
