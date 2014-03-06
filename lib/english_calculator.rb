@@ -4,7 +4,7 @@ def english_calculator(number_string)
   final_results = []
   questions.each do |question|
 
-    operators = {"plus" => :+, "minus" => :-, "times" => :*, "divided" => :/, "modulo" => :%, "power" => :**}
+    operators = {"plus" => "+", "minus" => "-", "times" => "*", "divided" => "/", "modulo" => "%", "power" => "**"}
     words_array = question.split(' ')
     numbers = []
     found_operators = []
@@ -16,17 +16,19 @@ def english_calculator(number_string)
         found_operators.push(operators[word])
       end
     end
-    current_result = numbers[0].to_f
+    current_result = numbers[0]
 
     1.upto(numbers.length-1) do |index|
       current_operator = found_operators[index - 1]
-      current_result = [current_result, numbers[index].to_f].inject(current_operator)
+      current_result = current_result + current_operator + numbers[index
     end
-    current_result = current_result.round(1)
-    final_results.push(current_result)
+
+    result = RubyVM::InstructionSequence.compile(current_result).eval.round(1)
+    final_results.push(result)
   end
-    final_results
+
+  final_results
 end
 
-puts RubyVM::InstructionSequence.compile("2+4" ).eval 
+# puts RubyVM::InstructionSequence.compile(2 "+" 4 ).eval 
  

@@ -35,4 +35,7 @@ describe("english_calculator") do
   it("will answer multiple questions") do
     english_calculator("what is 3 times 4? what is 3 plus 4").should(eq([12,7]))
   end
+  it("will follow order of operations") do
+    english_calculator("What is 3 plus 5 times 2").should(eq([13]))
+  end
 end
